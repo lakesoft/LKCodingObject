@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "TestObject.h"
+#import "TestObjectSub.h"
 
 @interface LKCodingObjectTests : XCTestCase
 
@@ -27,14 +28,15 @@
     [super tearDown];
 }
 
-- (void)testArchiving
+
+- (void)testArchivingTestObject
 {
     TestObject* src = TestObject.new;
     src.boolValue = YES;
     src.integerValue = -1000;
     src.floatValue = -2000.0;
     src.doubleValue = -3000.0;
-
+    
     src.stringValue = @"Hello";
     src.arrayValue = @[@(1), @(2), @(3)];
     src.dictionaryValue = @{@"KEY1":@"VALUE1", @"KEY2":@"VALUE2", @"KEY3":@"VALUE3"};
@@ -48,12 +50,45 @@
     XCTAssertEqual(dst.doubleValue, -3000.0, @"");
     
     XCTAssertEqualObjects(dst.stringValue, @"Hello", @"");
-
+    
     NSArray* arrayValue = dst.arrayValue;
     XCTAssertEqual(arrayValue[0], @(1), @"");
     XCTAssertEqual(arrayValue[1], @(2), @"");
     XCTAssertEqual(arrayValue[2], @(3), @"");
+    
+    NSDictionary* dictionaryValue = dst.dictionaryValue;
+    XCTAssertEqualObjects(dictionaryValue[@"KEY1"], @"VALUE1", @"");
+    XCTAssertEqualObjects(dictionaryValue[@"KEY2"], @"VALUE2", @"");
+    XCTAssertEqualObjects(dictionaryValue[@"KEY3"], @"VALUE3", @"");
+}
 
+- (void)testArchivingTestObjectSub
+{
+    TestObjectSub* src = TestObjectSub.new;
+    src.boolValue = YES;
+    src.integerValue = -1000;
+    src.floatValue = -2000.0;
+    src.doubleValue = -3000.0;
+    
+    src.stringValue = @"Hello";
+    src.arrayValue = @[@(1), @(2), @(3)];
+    src.dictionaryValue = @{@"KEY1":@"VALUE1", @"KEY2":@"VALUE2", @"KEY3":@"VALUE3"};
+    
+    NSData* data = [NSKeyedArchiver archivedDataWithRootObject:src];
+    TestObject* dst = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    
+    XCTAssertEqual(dst.boolValue, YES, @"");
+    XCTAssertEqual(dst.integerValue, -1000, @"");
+    XCTAssertEqual(dst.floatValue, -2000.0f, @"");
+    XCTAssertEqual(dst.doubleValue, -3000.0, @"");
+    
+    XCTAssertEqualObjects(dst.stringValue, @"Hello", @"");
+    
+    NSArray* arrayValue = dst.arrayValue;
+    XCTAssertEqual(arrayValue[0], @(1), @"");
+    XCTAssertEqual(arrayValue[1], @(2), @"");
+    XCTAssertEqual(arrayValue[2], @(3), @"");
+    
     NSDictionary* dictionaryValue = dst.dictionaryValue;
     XCTAssertEqualObjects(dictionaryValue[@"KEY1"], @"VALUE1", @"");
     XCTAssertEqualObjects(dictionaryValue[@"KEY2"], @"VALUE2", @"");

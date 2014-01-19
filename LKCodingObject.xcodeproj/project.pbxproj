@@ -27,6 +27,8 @@
 		BC07559C188A0DDB00ABA245 /* SampleObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BC07559A188A0DDB00ABA245 /* SampleObject.m */; };
 		BC07559F188A198700ABA245 /* TestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BC07559E188A198700ABA245 /* TestObject.m */; };
 		BC0755A0188A198700ABA245 /* TestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BC07559E188A198700ABA245 /* TestObject.m */; };
+		BC0F5A0D188B78D0001E392B /* TestObjectSub.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0F5A0B188B78CC001E392B /* TestObjectSub.m */; };
+		BC0F5A10188B7994001E392B /* SampleObjectSub.m in Sources */ = {isa = PBXBuildFile; fileRef = BC0F5A0F188B7994001E392B /* SampleObjectSub.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,10 @@
 		BC07559E188A198700ABA245 /* TestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestObject.m; sourceTree = "<group>"; };
 		BC0755A2188A1C6C00ABA245 /* LKCodingObject.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = LKCodingObject.podspec; sourceTree = "<group>"; };
 		BC0755A3188A1C6C00ABA245 /* Rakefile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Rakefile; sourceTree = "<group>"; };
+		BC0F5A0A188B78CC001E392B /* TestObjectSub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestObjectSub.h; sourceTree = "<group>"; };
+		BC0F5A0B188B78CC001E392B /* TestObjectSub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestObjectSub.m; sourceTree = "<group>"; };
+		BC0F5A0E188B7994001E392B /* SampleObjectSub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleObjectSub.h; sourceTree = "<group>"; };
+		BC0F5A0F188B7994001E392B /* SampleObjectSub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleObjectSub.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +143,8 @@
 				BC075566188A0BE200ABA245 /* Supporting Files */,
 				BC075599188A0DDB00ABA245 /* SampleObject.h */,
 				BC07559A188A0DDB00ABA245 /* SampleObject.m */,
+				BC0F5A0E188B7994001E392B /* SampleObjectSub.h */,
+				BC0F5A0F188B7994001E392B /* SampleObjectSub.m */,
 			);
 			path = Examples;
 			sourceTree = "<group>";
@@ -158,6 +166,8 @@
 				BC07558A188A0BE200ABA245 /* LKCodingObjectTests.m */,
 				BC07559D188A198700ABA245 /* TestObject.h */,
 				BC07559E188A198700ABA245 /* TestObject.m */,
+				BC0F5A0A188B78CC001E392B /* TestObjectSub.h */,
+				BC0F5A0B188B78CC001E392B /* TestObjectSub.m */,
 				BC075585188A0BE200ABA245 /* Supporting Files */,
 			);
 			path = Tests;
@@ -287,6 +297,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC0F5A10188B7994001E392B /* SampleObjectSub.m in Sources */,
 				BC075576188A0BE200ABA245 /* ViewController.m in Sources */,
 				BC075597188A0CCA00ABA245 /* LKCodingObject.m in Sources */,
 				BC075570188A0BE200ABA245 /* AppDelegate.m in Sources */,
@@ -302,6 +313,7 @@
 			files = (
 				BC07559C188A0DDB00ABA245 /* SampleObject.m in Sources */,
 				BC07558B188A0BE200ABA245 /* LKCodingObjectTests.m in Sources */,
+				BC0F5A0D188B78D0001E392B /* TestObjectSub.m in Sources */,
 				BC0755A0188A198700ABA245 /* TestObject.m in Sources */,
 				BC075598188A0CCA00ABA245 /* LKCodingObject.m in Sources */,
 			);
@@ -504,6 +516,7 @@
 				BC075590188A0BE200ABA245 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BC075591188A0BE200ABA245 /* Build configuration list for PBXNativeTarget "LKCodingObjectTests" */ = {
 			isa = XCConfigurationList;
@@ -512,6 +525,7 @@
 				BC075593188A0BE200ABA245 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

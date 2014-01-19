@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "SampleObject.h"
+#import "SampleObjectSub.h"
 
 @interface ViewController ()
 
@@ -19,13 +20,18 @@
 {
     [super viewDidLoad];
     
-    SampleObject* obj = SampleObject.new;
-    obj.stringValue = @"Hello";
-    NSData* data = [NSKeyedArchiver archivedDataWithRootObject:obj];
-    SampleObject* obj2 = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    NSLog(@"%@", obj2.stringValue);
+//    SampleObject* obj = SampleObject.new;
+//    obj.stringValue = @"Hello";
+//    NSData* data = [NSKeyedArchiver archivedDataWithRootObject:obj];
+//    SampleObject* obj2 = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+//    NSLog(@"%@", obj2.stringValue);
 
-	// Do any additional setup after loading the view, typically from a nib.
+    
+    SampleObjectSub* objS = SampleObjectSub.new;
+    objS.stringValue = @"Hello-Sub";
+    NSData* dataS = [NSKeyedArchiver archivedDataWithRootObject:objS];
+    SampleObject* objS2 = [NSKeyedUnarchiver unarchiveObjectWithData:dataS];
+    NSLog(@"%@", objS2.stringValue);
 }
 
 - (void)didReceiveMemoryWarning

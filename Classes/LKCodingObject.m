@@ -12,19 +12,25 @@
 @implementation LKCodingObject
 
 #pragma mark - Privates
-- (NSArray*)_propertyNames
+
+
+- (void)_propertyNamesForClass:(Class)cls propertyNames:(NSMutableArray*)propertyNames
 {
-    NSMutableArray* propertyNames = @[].mutableCopy;
-    
+    Class superClass = class_getSuperclass(cls);
+    if (superClass != [NSObject class]) {
+        [self _propertyNamesForClass:superClass propertyNames:propertyNames];
+    }
+
     unsigned int count, i;
-    objc_property_t *objc_properties = class_copyPropertyList(self.class, &count);
+    objc_property_t *objc_properties = class_copyPropertyList(cls, &count);
     
     for(i = 0; i < count; i++) {
         objc_property_t objc_property = objc_properties[i];
-        propertyNames[i] = [NSString stringWithUTF8String:property_getName(objc_property)];
+        NSString* name = [NSString stringWithUTF8String:property_getName(objc_property)];
+        [propertyNames addObject:name];
     }
     free(objc_properties);
-    return propertyNames;
+    
 }
 
 
@@ -34,7 +40,9 @@
 {
     self = [super init];
     if (self) {
-        for (NSString* name in self._propertyNames) {
+        NSMutableArray* propertyNames = @[].mutableCopy;
+        [self _propertyNamesForClass:self.class propertyNames:propertyNames];
+        for (NSString* name in propertyNames) {
             id value = [decoder decodeObjectForKey:name];
             [self setValue:value forKey:name];
         }
@@ -44,7 +52,9 @@
 
 - (void)encodeWithCoder:(NSCoder *)coder
 {
-    for (NSString* name in self._propertyNames) {
+    NSMutableArray* propertyNames = @[].mutableCopy;
+    [self _propertyNamesForClass:self.class propertyNames:propertyNames];
+    for (NSString* name in propertyNames) {
         id value = [self valueForKey:name];
         if ([value conformsToProtocol:@protocol(NSCoding)]) {
             [coder encodeObject:value forKey:name];
