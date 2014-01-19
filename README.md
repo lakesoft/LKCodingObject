@@ -1,4 +1,4 @@
-# LKUCodingObject
+# LKCodingObject
 
 ## Usage
 Step 1 : Define subclass of LKCodingObject
@@ -16,7 +16,6 @@ Step 2 :  Archive an instance of the class
     userInfo.name = @"Hoge";
     userInfo.email = @"hoge@xcatsan.com";
     [NSKeyedArchiver archiveRootObject:userInfo toFile:@"user_info.dat"];
-      :
 
 
 Step 3 : Unarchive from the file
@@ -24,12 +23,12 @@ Step 3 : Unarchive from the file
     UeserInfo* userInfo = [NSKeyedUnarchiver unarchiveObjectWithFile:@"user_info.dat"];
 
 
-It is not neccesary to implement NSCoding methods.
+It is not necessary to implement NSCoding methods.
 
 ## Notes
 
 - Properties must be conformed to NSCoding protocol.
-- If a property is not conforming to it, the property will be not archived.
+- If a property is not conforming to it, the property will not be archived.
 
 
 ## Installation
