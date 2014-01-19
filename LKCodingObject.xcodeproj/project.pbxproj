@@ -21,6 +21,12 @@
 		BC075581188A0BE200ABA245 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC075563188A0BE200ABA245 /* UIKit.framework */; };
 		BC075589188A0BE200ABA245 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BC075587188A0BE200ABA245 /* InfoPlist.strings */; };
 		BC07558B188A0BE200ABA245 /* LKCodingObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BC07558A188A0BE200ABA245 /* LKCodingObjectTests.m */; };
+		BC075597188A0CCA00ABA245 /* LKCodingObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BC075596188A0CCA00ABA245 /* LKCodingObject.m */; };
+		BC075598188A0CCA00ABA245 /* LKCodingObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BC075596188A0CCA00ABA245 /* LKCodingObject.m */; };
+		BC07559B188A0DDB00ABA245 /* SampleObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BC07559A188A0DDB00ABA245 /* SampleObject.m */; };
+		BC07559C188A0DDB00ABA245 /* SampleObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BC07559A188A0DDB00ABA245 /* SampleObject.m */; };
+		BC07559F188A198700ABA245 /* TestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BC07559E188A198700ABA245 /* TestObject.m */; };
+		BC0755A0188A198700ABA245 /* TestObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BC07559E188A198700ABA245 /* TestObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +59,14 @@
 		BC075586188A0BE200ABA245 /* LKCodingObjectTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LKCodingObjectTests-Info.plist"; sourceTree = "<group>"; };
 		BC075588188A0BE200ABA245 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BC07558A188A0BE200ABA245 /* LKCodingObjectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LKCodingObjectTests.m; sourceTree = "<group>"; };
+		BC075595188A0CCA00ABA245 /* LKCodingObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKCodingObject.h; sourceTree = "<group>"; };
+		BC075596188A0CCA00ABA245 /* LKCodingObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKCodingObject.m; sourceTree = "<group>"; };
+		BC075599188A0DDB00ABA245 /* SampleObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleObject.h; sourceTree = "<group>"; };
+		BC07559A188A0DDB00ABA245 /* SampleObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleObject.m; sourceTree = "<group>"; };
+		BC07559D188A198700ABA245 /* TestObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestObject.h; sourceTree = "<group>"; };
+		BC07559E188A198700ABA245 /* TestObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestObject.m; sourceTree = "<group>"; };
+		BC0755A2188A1C6C00ABA245 /* LKCodingObject.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = LKCodingObject.podspec; sourceTree = "<group>"; };
+		BC0755A3188A1C6C00ABA245 /* Rakefile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Rakefile; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,8 +96,10 @@
 		BC075553188A0BE200ABA245 = {
 			isa = PBXGroup;
 			children = (
-				BC075565188A0BE200ABA245 /* LKCodingObject */,
-				BC075584188A0BE200ABA245 /* LKCodingObjectTests */,
+				BC0755A1188A1C5E00ABA245 /* CocoaPods */,
+				BC075594188A0CAE00ABA245 /* Classes */,
+				BC075565188A0BE200ABA245 /* Examples */,
+				BC075584188A0BE200ABA245 /* Tests */,
 				BC07555E188A0BE200ABA245 /* Frameworks */,
 				BC07555D188A0BE200ABA245 /* Products */,
 			);
@@ -109,7 +125,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		BC075565188A0BE200ABA245 /* LKCodingObject */ = {
+		BC075565188A0BE200ABA245 /* Examples */ = {
 			isa = PBXGroup;
 			children = (
 				BC07556E188A0BE200ABA245 /* AppDelegate.h */,
@@ -119,8 +135,10 @@
 				BC075575188A0BE200ABA245 /* ViewController.m */,
 				BC075577188A0BE200ABA245 /* Images.xcassets */,
 				BC075566188A0BE200ABA245 /* Supporting Files */,
+				BC075599188A0DDB00ABA245 /* SampleObject.h */,
+				BC07559A188A0DDB00ABA245 /* SampleObject.m */,
 			);
-			path = LKCodingObject;
+			path = Examples;
 			sourceTree = "<group>";
 		};
 		BC075566188A0BE200ABA245 /* Supporting Files */ = {
@@ -134,13 +152,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		BC075584188A0BE200ABA245 /* LKCodingObjectTests */ = {
+		BC075584188A0BE200ABA245 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				BC07558A188A0BE200ABA245 /* LKCodingObjectTests.m */,
+				BC07559D188A198700ABA245 /* TestObject.h */,
+				BC07559E188A198700ABA245 /* TestObject.m */,
 				BC075585188A0BE200ABA245 /* Supporting Files */,
 			);
-			path = LKCodingObjectTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		BC075585188A0BE200ABA245 /* Supporting Files */ = {
@@ -150,6 +170,24 @@
 				BC075587188A0BE200ABA245 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BC075594188A0CAE00ABA245 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				BC075595188A0CCA00ABA245 /* LKCodingObject.h */,
+				BC075596188A0CCA00ABA245 /* LKCodingObject.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		BC0755A1188A1C5E00ABA245 /* CocoaPods */ = {
+			isa = PBXGroup;
+			children = (
+				BC0755A2188A1C6C00ABA245 /* LKCodingObject.podspec */,
+				BC0755A3188A1C6C00ABA245 /* Rakefile */,
+			);
+			name = CocoaPods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,7 +288,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC075576188A0BE200ABA245 /* ViewController.m in Sources */,
+				BC075597188A0CCA00ABA245 /* LKCodingObject.m in Sources */,
 				BC075570188A0BE200ABA245 /* AppDelegate.m in Sources */,
+				BC07559B188A0DDB00ABA245 /* SampleObject.m in Sources */,
+				BC07559F188A198700ABA245 /* TestObject.m in Sources */,
 				BC07556C188A0BE200ABA245 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,7 +300,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC07559C188A0DDB00ABA245 /* SampleObject.m in Sources */,
 				BC07558B188A0BE200ABA245 /* LKCodingObjectTests.m in Sources */,
+				BC0755A0188A198700ABA245 /* TestObject.m in Sources */,
+				BC075598188A0CCA00ABA245 /* LKCodingObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,8 +423,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "LKCodingObject/LKCodingObject-Prefix.pch";
-				INFOPLIST_FILE = "LKCodingObject/LKCodingObject-Info.plist";
+				GCC_PREFIX_HEADER = "Examples/LKCodingObject-Prefix.pch";
+				INFOPLIST_FILE = "Examples/LKCodingObject-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -392,8 +436,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "LKCodingObject/LKCodingObject-Prefix.pch";
-				INFOPLIST_FILE = "LKCodingObject/LKCodingObject-Info.plist";
+				GCC_PREFIX_HEADER = "Examples/LKCodingObject-Prefix.pch";
+				INFOPLIST_FILE = "Examples/LKCodingObject-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -410,12 +454,12 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "LKCodingObject/LKCodingObject-Prefix.pch";
+				GCC_PREFIX_HEADER = "Examples/LKCodingObject-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "LKCodingObjectTests/LKCodingObjectTests-Info.plist";
+				INFOPLIST_FILE = "Tests/LKCodingObjectTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -433,8 +477,8 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "LKCodingObject/LKCodingObject-Prefix.pch";
-				INFOPLIST_FILE = "LKCodingObjectTests/LKCodingObjectTests-Info.plist";
+				GCC_PREFIX_HEADER = "Examples/LKCodingObject-Prefix.pch";
+				INFOPLIST_FILE = "Tests/LKCodingObjectTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

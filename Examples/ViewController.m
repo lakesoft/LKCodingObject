@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "SampleObject.h"
 
 @interface ViewController ()
 
@@ -17,6 +18,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    SampleObject* obj = SampleObject.new;
+    obj.stringValue = @"Hello";
+    NSData* data = [NSKeyedArchiver archivedDataWithRootObject:obj];
+    SampleObject* obj2 = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    NSLog(@"%@", obj2.stringValue);
+
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
