@@ -10,4 +10,14 @@
 
 @implementation SampleObject
 
+- (void)setObject1:(id)object
+{
+    // do nothing
+}
+
+- (id)object2
+{
+    return nil;
+}
+
 @end

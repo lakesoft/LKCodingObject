@@ -24,4 +24,7 @@
 @property (strong, nonatomic) NSURL* urlValue;
 @property (strong, nonatomic) NSDate* dateValue;
 
+- (void)setObject1:(id)object;
+- (id)object2;
+
 @end
