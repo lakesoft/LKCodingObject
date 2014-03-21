@@ -38,12 +38,12 @@
     src.doubleValue = -3000.0;
     
     src.stringValue = @"Hello";
-    src.arrayValue = @[@(1), @(2), @(3)];
+    src.arrayValue = @[@"1", @"2", @"3"];
     src.dictionaryValue = @{@"KEY1":@"VALUE1", @"KEY2":@"VALUE2", @"KEY3":@"VALUE3"};
     
     NSData* data = [NSKeyedArchiver archivedDataWithRootObject:src];
     TestObject* dst = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    
+
     XCTAssertEqual(dst.boolValue, YES, @"");
     XCTAssertEqual(dst.integerValue, -1000, @"");
     XCTAssertEqual(dst.floatValue, -2000.0f, @"");
@@ -52,9 +52,9 @@
     XCTAssertEqualObjects(dst.stringValue, @"Hello", @"");
     
     NSArray* arrayValue = dst.arrayValue;
-    XCTAssertEqual(arrayValue[0], @(1), @"");
-    XCTAssertEqual(arrayValue[1], @(2), @"");
-    XCTAssertEqual(arrayValue[2], @(3), @"");
+    XCTAssertEqualObjects(arrayValue[0], @"1", @"");
+    XCTAssertEqualObjects(arrayValue[1], @"2", @"");
+    XCTAssertEqualObjects(arrayValue[2], @"3", @"");
     
     NSDictionary* dictionaryValue = dst.dictionaryValue;
     XCTAssertEqualObjects(dictionaryValue[@"KEY1"], @"VALUE1", @"");
@@ -71,7 +71,7 @@
     src.doubleValue = -3000.0;
     
     src.stringValue = @"Hello";
-    src.arrayValue = @[@(1), @(2), @(3)];
+    src.arrayValue = @[@"1", @"2", @"3"];
     src.dictionaryValue = @{@"KEY1":@"VALUE1", @"KEY2":@"VALUE2", @"KEY3":@"VALUE3"};
     
     NSData* data = [NSKeyedArchiver archivedDataWithRootObject:src];
@@ -85,9 +85,9 @@
     XCTAssertEqualObjects(dst.stringValue, @"Hello", @"");
     
     NSArray* arrayValue = dst.arrayValue;
-    XCTAssertEqual(arrayValue[0], @(1), @"");
-    XCTAssertEqual(arrayValue[1], @(2), @"");
-    XCTAssertEqual(arrayValue[2], @(3), @"");
+    XCTAssertEqualObjects(arrayValue[0], @"1", @"");
+    XCTAssertEqualObjects(arrayValue[1], @"2", @"");
+    XCTAssertEqualObjects(arrayValue[2], @"3", @"");
     
     NSDictionary* dictionaryValue = dst.dictionaryValue;
     XCTAssertEqualObjects(dictionaryValue[@"KEY1"], @"VALUE1", @"");

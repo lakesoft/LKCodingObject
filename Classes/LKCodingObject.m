@@ -9,6 +9,13 @@
 #import "LKCodingObject.h"
 #import <objc/runtime.h>
 
+@interface LKCodingObjectProperty : NSObject
+@property (nonatomic, strong) NSString* name;
+@property (nonatomic, strong) NSString* type;
+@end
+@implementation LKCodingObjectProperty
+@end
+
 @implementation LKCodingObject
 
 #pragma mark - Privates
@@ -25,10 +32,16 @@
     objc_property_t *objc_properties = class_copyPropertyList(cls, &count);
     
     for(i = 0; i < count; i++) {
+        LKCodingObjectProperty* property = LKCodingObjectProperty.new;
         objc_property_t objc_property = objc_properties[i];
-        NSString* name = [NSString stringWithUTF8String:property_getName(objc_property)];
-        [propertyNames addObject:name];
-    }
+        property.name = [NSString stringWithUTF8String:property_getName(objc_property)];
+        
+        char * property_type_attribute = property_copyAttributeValue(objc_property, "T");
+        property.type = [NSString stringWithUTF8String:property_type_attribute];
+        free(property_type_attribute);
+
+        [propertyNames addObject:property];
+}
     free(objc_properties);
     
 }
@@ -40,11 +53,16 @@
 {
     self = [super init];
     if (self) {
-        NSMutableArray* propertyNames = @[].mutableCopy;
-        [self _propertyNamesForClass:self.class propertyNames:propertyNames];
-        for (NSString* name in propertyNames) {
-            id value = [decoder decodeObjectForKey:name];
-            [self setValue:value forKey:name];
+        NSMutableArray* properties = @[].mutableCopy;
+        [self _propertyNamesForClass:self.class propertyNames:properties];
+        for (LKCodingObjectProperty* property in properties) {
+            id value = [decoder decodeObjectForKey:property.name];
+            if (value == nil) {
+                if (![property.type hasPrefix:@"@"]) {
+                    value = @(0);
+                }
+            }
+            [self setValue:value forKey:property.name];
         }
     }
     return self;
@@ -52,12 +70,12 @@
 
 - (void)encodeWithCoder:(NSCoder *)coder
 {
-    NSMutableArray* propertyNames = @[].mutableCopy;
-    [self _propertyNamesForClass:self.class propertyNames:propertyNames];
-    for (NSString* name in propertyNames) {
-        id value = [self valueForKey:name];
+    NSMutableArray* properties = @[].mutableCopy;
+    [self _propertyNamesForClass:self.class propertyNames:properties];
+    for (LKCodingObjectProperty* property in properties) {
+        id value = [self valueForKey:property.name];
         if ([value conformsToProtocol:@protocol(NSCoding)]) {
-            [coder encodeObject:value forKey:name];
+            [coder encodeObject:value forKey:property.name];
         }
     }
 }
