@@ -10,5 +10,4 @@
 
 @interface LKCodingObject : NSObject <NSCoding>
 
-
 @end
