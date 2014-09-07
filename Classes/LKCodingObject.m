@@ -12,13 +12,8 @@
 @interface LKCodingObjectProperty : NSObject
 @property (nonatomic, strong) NSString* name;
 @property (nonatomic, strong) NSString* type;
-@property (nonatomic, assign, readonly) BOOL isObject;
 @end
 @implementation LKCodingObjectProperty
-- (BOOL)isObject
-{
-    return [self.type hasPrefix:@"@"];
-}
 @end
 
 @implementation LKCodingObject
@@ -58,22 +53,12 @@
 {
     self = [super init];
     if (self) {
-        id reference = nil;
-
         NSMutableArray* properties = @[].mutableCopy;
         [self _propertyNamesForClass:self.class propertyNames:properties];
         for (LKCodingObjectProperty* property in properties) {
-            id value = nil;
-            if ([decoder containsValueForKey:property.name]) {
-                value = [decoder decodeObjectForKey:property.name];
-            } else {
-                if (reference == nil) {
-                    reference = [[super init] init];
-                }
-                value = [reference valueForKey:property.name];
-            }
+            id value = [decoder decodeObjectForKey:property.name];
             if (value == nil) {
-                if (!property.isObject) {
+                if (![property.type hasPrefix:@"@"]) {
                     value = @(0);
                 }
             }
