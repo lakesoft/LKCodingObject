@@ -36,7 +36,7 @@ It is not necessary to implement NSCoding methods.
 LKUserDefaults is available through [CocoaPods](http://cocoapods.org), to install
 it simply add the following line to your Podfile:
 
-    pod "LKCodingObject", :git => 'https://github.com/lakesoft/LKCodingObject.git'
+    pod "LKCodingObject"
 
 
 ## Author
