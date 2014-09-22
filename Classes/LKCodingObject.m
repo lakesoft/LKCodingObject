@@ -20,6 +20,16 @@
 
 #pragma mark - Privates
 
+- (NSArray*)_ignoredNames
+{
+    static NSArray* names = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        names = @[@"hash", @"superclass", @"description", @"debugDescription"];
+    });
+    return names;
+}
+
 
 - (void)_propertyNamesForClass:(Class)cls propertyNames:(NSMutableArray*)propertyNames
 {
@@ -32,9 +42,15 @@
     objc_property_t *objc_properties = class_copyPropertyList(cls, &count);
     
     for(i = 0; i < count; i++) {
-        LKCodingObjectProperty* property = LKCodingObjectProperty.new;
         objc_property_t objc_property = objc_properties[i];
-        property.name = [NSString stringWithUTF8String:property_getName(objc_property)];
+        NSString* name = [NSString stringWithUTF8String:property_getName(objc_property)];
+        
+        if ([self._ignoredNames containsObject:name]) {
+            continue;
+        }
+
+        LKCodingObjectProperty* property = LKCodingObjectProperty.new;
+        property.name = name;
         
         char * property_type_attribute = property_copyAttributeValue(objc_property, "T");
         property.type = [NSString stringWithUTF8String:property_type_attribute];

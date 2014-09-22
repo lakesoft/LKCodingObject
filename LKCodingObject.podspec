@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "LKCodingObject"
-  s.version      = "1.2.2"
+  s.version      = "1.3.0"
   s.summary      = "NSCoding conformed library"
   s.description  = <<-DESC
 Properties can be archived/unarchived with conforming to NSCoding.
