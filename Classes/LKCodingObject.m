@@ -14,18 +14,31 @@
 @property (nonatomic, strong) NSString* type;
 @end
 @implementation LKCodingObjectProperty
+- (NSString*)description
+{
+    return _name;
+}
 @end
 
 @implementation LKCodingObject
 
 #pragma mark - Privates
 
+- (NSArray*)_ignoredNames
+{
+    static NSArray* names = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        names = @[@"hash", @"superclass", @"description", @"debugDescription"];
+    });
+    return names;
+}
+
+
 - (void)_propertyNamesForClass:(Class)cls propertyNames:(NSMutableArray*)propertyNames
 {
     Class superClass = class_getSuperclass(cls);
-    if (superClass == [NSObject class]) {
-        return;
-    } else {
+    if (superClass != [NSObject class]) {
         [self _propertyNamesForClass:superClass propertyNames:propertyNames];
     }
 
@@ -36,6 +49,10 @@
         objc_property_t objc_property = objc_properties[i];
         NSString* name = [NSString stringWithUTF8String:property_getName(objc_property)];
         
+        if ([self._ignoredNames containsObject:name]) {
+            continue;
+        }
+
         LKCodingObjectProperty* property = LKCodingObjectProperty.new;
         property.name = name;
         
