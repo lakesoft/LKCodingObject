@@ -61,7 +61,7 @@
         free(property_type_attribute);
 
         [propertyNames addObject:property];
-}
+    }
     free(objc_properties);
     
 }
